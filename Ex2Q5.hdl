@@ -1,0 +1,22 @@
+CHIP Ex2Q5 {
+    IN A[8];
+    OUT Zn[4];
+
+    PARTS:
+
+    FullAdder(a=A[7], b=A[6] , c=A[5], sum=s0, carry=c0);
+    FullAdder(a=A[4], b=A[3] , c=A[2], sum=s1, carry=c1);
+    FullAdder(a=A[1], b=A[0] , c=true, sum=s2, carry=c2);
+    Not(in = s0, out = ns0);
+    Not(in = c0, out = nc0);
+    Not(in = s1, out = ns1);
+    Not(in = c1, out = nc1);
+    Not(in = s2, out = ns2);
+    Not(in = c2, out = nc2);
+    FullAdder(a=ns0, b=ns1 , c=false, sum=s3, carry=c3);
+    FullAdder(a=nc0, b=nc1 , c=c3, sum=s4, carry=c4);
+    FullAdder(a=ns2, b=s3,  c=false, sum=Zn[0], carry = c5);
+    FullAdder(a=nc2, b=s4,  c=c5, sum=Zn[1], carry=c6);
+    FullAdder(a=c4, b=c6, c=false, sum=Zn[2], carry=Zn[3]);
+
+}
