@@ -1,0 +1,52 @@
+/**
+ *  A FSM with input x and output z which outputs 1 in case one of the two following 
+ *  series is encountered: 1100 or 0101. The FSM will output 0 otherwise. Overlapping is 
+ *  permitted – the input 1100101 will result in the output 0001001. 
+ *  Use D-FF units and minimal logic.
+ */
+
+CHIP FSMQuestion {
+    IN  x;
+    OUT z;
+
+    PARTS:
+    // Put your implementation here 
+	Not(in=x,out=nx);
+	Not(in=q0,out=nq0);
+	Not(in=q1,out=nq1);
+	Not(in=q2,out=nq2);
+
+	//D2:
+	threeAnd(a=x,b=nq1,c=nq0,out=xnq1nq0);
+	threeAnd(a=x,b=nq2,c=q1,out=xnq2q1);
+	And(a=q2,b=q0,out=q2q0);
+	Or(a=xnq1nq0,b=xnq2q1,out=ord2);
+	Or(a=ord2,b=q2q0,out=d2);
+	
+	//D1:
+	threeAnd(a=nx,b=q2,c=q0,out=nxq2q0);
+	threeAnd(a=x,b=q2,c=q1,out=xq2q1);
+	fourAnd(a=x,b=nq2,c=nq1,d=q0,out=xnq2nq1q0);
+	fourAnd(a=nx,b=nq2,c=q1,d=nq0,out=nxnq2q1nq0);
+	fourOr(a=nxq2q0,b=xq2q1,c=xnq2nq1q0,d=nxnq2q1nq0,out=d1);
+
+	//D0:
+	And(a=nx,b=nq2,out=nxnq2);
+	And(a=nx,b=q1,out=nxq1);
+	threeAnd(a=nq2,b=q1,c=nq0,out=nq2q1nq0);
+	threeAnd(a=x,b=q2,c=nq1,out=xq2nq1);
+	threeAnd(a=q2,b=nq1,c=nq0,out=q2nq1nq0);
+	fourOr(a=nxnq2,b=nxq1,c=nq2q1nq0,d=xq2nq1,out=ord0);
+	Or(a=ord0,b=q2nq1nq0,out=d0);
+
+	//Z:
+	threeAnd(a=nx,b=q2,c=q1,out=nxq2q1);
+	threeAnd(a=x,b=q1,c=q0,out=xq1q0);
+	Or(a=nxq2q1,b=xq1q0,out=z);
+
+	DFF(in=d0,out=q0);
+	DFF(in=d1,out=q1);
+	DFF(in=d2,out=q2);
+
+	
+}
