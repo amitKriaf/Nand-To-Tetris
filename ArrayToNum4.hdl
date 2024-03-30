@@ -1,0 +1,12 @@
+CHIP ArrayToNum4
+{
+  IN a[4];
+  OUT s0,s1,s2,s3;
+
+  PARTS:
+And(a = a[0], b = a[0], out = s0);
+And(a = a[1], b = a[1], out = s1);
+And(a = a[2], b = a[2], out = s2);
+And(a = a[3], b = a[3], out = s3);
+
+}
