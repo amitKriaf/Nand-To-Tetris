@@ -1,0 +1,11 @@
+CHIP SRFF {
+    IN  S,R;
+    OUT out;
+
+    PARTS:
+	Or(a=S, b=q, out=SorQ);
+	Not(in=R, out=notR);
+	And(a=SorQ, b=notR, out=d);
+	// Flip Flop
+	DFF(in=d, out=q, out=out);
+}
