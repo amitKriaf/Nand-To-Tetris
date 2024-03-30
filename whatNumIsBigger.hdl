@@ -10,7 +10,7 @@
  *                Alternatively, A>B iff not(A=B or A<B)
  */
 
-CHIP Ex2Q4 {
+CHIP whatNumIsBigger {
     IN A[4], B[4] ;
     OUT eq, gt, lt;
 
