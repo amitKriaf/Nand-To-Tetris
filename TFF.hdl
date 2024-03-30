@@ -1,0 +1,7 @@
+CHIP TFF{
+	IN in;
+	OUT out;
+PARTS:
+	Xor(a=in,b=Q,out=D);
+	DFF(in=D,out=Q,out=out);
+}
