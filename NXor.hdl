@@ -1,0 +1,21 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/NXor.hdl
+
+/**
+ *  Not Exclusive-or gate: out = (a == b).
+ */
+
+CHIP NXor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+  Nand(a = a, b= b, out = NAB);
+    Nand(a = a, b= NAB, out = NA);
+    Nand(a = b, b= NAB, out = NB);
+    Nand(a = NA, b= NB, out = NAB2);
+   Nand (a=NAB2, b=NAB2 ,out=out);
+
+   }
