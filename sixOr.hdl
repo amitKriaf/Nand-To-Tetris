@@ -1,0 +1,12 @@
+CHIP sixOr {
+    IN a, b, c, d, e, f;
+    OUT out;
+
+    PARTS:
+Or(a = a, b= b, out = res1);
+Or(a = c, b= res1, out = res2);
+Or(a = d, b= res2, out = res3);
+Or(a = e, b= res3, out = res4);
+Or(a = f, b= res4, out = out);
+
+   }

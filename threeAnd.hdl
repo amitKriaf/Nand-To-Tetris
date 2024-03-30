@@ -1,0 +1,8 @@
+CHIP threeAnd {
+    IN a, b,c;
+    OUT out;
+
+    PARTS:
+	And(a=a,b=b,out=s0);
+	And(a=c, b=s0, out=out);
+   }

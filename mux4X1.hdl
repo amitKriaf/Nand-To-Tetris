@@ -1,0 +1,13 @@
+CHIP mux4X1 {
+    IN a, b,c,d,sel1, sel2 ;
+    OUT out;
+
+    PARTS:
+	Not(in =sel1, out= nsel1);
+	Not(in = sel2, out= nsel2);
+	threeAnd(a=a,b=nsel1,c=nsel2, out=res1);
+	threeAnd(a=b,b=nsel1,c=sel2,out=res2);
+	threeAnd(a=c,b=sel1,c=nsel2,out=res3);
+	threeAnd(a=d,b=sel1,c=sel2,  out=res4);
+	fourOr(a=res1, b=res2, c=res3, d=res4, out=out);
+   }

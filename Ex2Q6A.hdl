@@ -1,0 +1,18 @@
+/**
+ *  F(A,B,C,D) = SOP(1,2,3,4,5,8,9,14)
+ */
+
+CHIP Ex2Q6A {
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+    // Put your implementation here using DEC3x8
+    // and minimal logic
+	dec3X8(a=a,b=b,c=c,out0=res0,out1=res1,out2=res2,out3=res3,out4=res4,out5=res5,out6=res6,out7=res7);
+	And(a=d, b=res0,out=c1);
+	And(a=d,b=res2,out=c2);
+	Not(in=d,out=nd);
+	And(a=nd,b=res7,out=c3);
+	sixOr(a=c1, b=c2, c=c3 ,d= res1, e=res2, f=res4 ,out = out ) ;
+}

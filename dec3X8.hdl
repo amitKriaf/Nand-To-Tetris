@@ -1,0 +1,17 @@
+CHIP dec3X8 {
+    IN a, b, c;
+    OUT out0, out1, out2, out3, out4, out5, out6, out7;
+
+    PARTS:
+	Not(in =a, out= na0);
+	Not(in =b, out= na1);
+	Not(in =c, out= na2);
+	threeAnd(a=na0,b=na1,c=na2,out=out0);
+	threeAnd(a=na0,b=na1,c=c,out=out1);
+	threeAnd(a=na0,b=b,c=na2,out=out2);
+	threeAnd(a=na0,b=b,c=c,out=out3);
+	threeAnd(a=a,b=na1,c=na2,out=out4);
+	threeAnd(a=a,b=na1,c=c,out=out5);
+	threeAnd(a=a,b=b,c=na2,out=out6);
+	threeAnd(a=a,b=b,c=c,out=out7);
+   }

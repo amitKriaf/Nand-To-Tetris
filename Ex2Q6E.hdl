@@ -1,0 +1,25 @@
+/**
+ *  F(A,B,C,D) = SOP(1,2,3,4,5,8,9,14)
+ */
+
+CHIP Ex2Q6E {
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+    // Put your implementation here using single Mux 2-1
+    // and minimal logic
+	Not(in = b, out = nb);
+	Not(in = c , out = nc);
+	Not(in = d, out = nd);
+	And(a = b , b = nc, out = c1);
+	And( a= nc, b = d, out = c2);
+	And(a= nb, b = c, out = c3);
+	Or(a = c1, b = c2, out = c4);
+	Or(a = c3, b = c4, out = i0);
+	And(a = nb, b = nc, out = c5);
+	threeAnd(a= b, b = c, c = nd, out = c6);
+	Or(a = c5, b = c6, out = i1);
+	Mux(a = i0, b = i1, sel = a, out = out); 
+
+}

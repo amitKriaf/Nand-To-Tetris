@@ -1,0 +1,9 @@
+CHIP fourOr {
+    IN a, b, c, d;
+    OUT out;
+
+    PARTS:
+	Or(a = a, b= b, out = res1);
+	Or(a = c, b= res1, out = res2);
+	Or(a = d, b= res2, out = out);
+   }

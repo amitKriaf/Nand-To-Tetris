@@ -1,0 +1,18 @@
+ /**
+ *  F(A,B,C,D) = SOP(1,2,3,4,5,8,9,14)
+ */
+
+CHIP Ex2Q6C {
+    IN a,b,c,d;
+    OUT out;
+
+    PARTS:
+    // Put your implementation here using two Mux 4-1
+    // and minimal logic
+	mux4X1(a=false,b=true,c=true,d=true,sel1=c, sel2=d, out=I0);
+	Not(in=c,out=nc);
+	Not(in=d,out=nd);
+	And(a=c,b=nd,out=I3);
+	mux4X1(a=I0,b=nc,c=nc,d=I3, sel1=a,sel2=b,out=out);
+	
+}
